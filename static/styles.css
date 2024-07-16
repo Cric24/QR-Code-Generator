@@ -1,0 +1,126 @@
+/* General styles */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: url('/static/pexels-ollivves-1074505.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+    background-blend-mode: darken;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: '';
+    position:fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.329);
+    backdrop-filter: blur(90px);
+    z-index: -1;
+}
+
+
+
+.container {
+    text-align: center;
+    background: #eeeff1e0;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1rem;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.loading {
+    display: none;
+    font-size: 1rem;
+    color: #999;
+    margin-top: 20px;
+}
+
+.qr-result {
+    display: none;
+    margin-top: 20px;
+}
+
+.qr-result img {
+    
+    width: 100%;
+    max-width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.qr-result a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.qr-result a:hover {
+    background-color: #1976D2;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <form id="qrForm" action="/generate" method="post" onsubmit="generateQR(event)">
+            <label for="data">Enter Data:</label>
+            <input type="text" id="data" name="data" required>
+            <button type="submit">Generate QR Code</button>
+        </form>
+        <div id="loading" class="loading">Generating QR Code...</div>
+        <div id="qrResult" class="qr-result">
+           <center><img id="qrImage" src="" alt="QR Code"></center> 
+            <a id="downloadLink" href="#" download="qrcode.png">Save QR Code</a>
+        </div>
+    </div>
+    <script>
+        function generateQR(event) {
+            event.preventDefault();
+            const form = document.getElementById('qrForm');
+            const loading = document.getElementById('loading');
+            const qrResult = document.getElementById('qrResult');
+            const qrImage = document.getElementById('qrImage');
+            const downloadLink = document.getElementById('downloadLink');
+
+            loading.style.display = 'block';
+            qrResult.style.display = 'none';
+
+            fetch('/generate', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                qrImage.src = url;
+                downloadLink.href = url;
+                qrResult.style.display = 'block';
+                loading.style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                loading.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
